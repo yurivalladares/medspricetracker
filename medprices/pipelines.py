@@ -23,8 +23,16 @@ class MedpricesPipeline:
         self.Session = sessionmaker(bind=engine)
 
     def process_item(self, item, spider):
-        item['price'] = float(item['price'].replace('.', '').replace(',', '.'))
+        if isinstance(item['price'], str):
+            item['price'] = item['price'].replace('R$', '')
+            item['price'] = item['price'].replace(' ', '')
+            item['price'] = item['price'].replace('.', '')
+            item['price'] = item['price'].replace(',', '.')
+            item['price'] = float(item['price'])
+        if isinstance(item['product_name'], str):
+            item['product_name'] = item['product_name'].strip()
         item['scraped_at'] = datetime.now(timezone('America/Sao_Paulo'))
+        item['store'] = spider.store
 
         session = self.Session()
         item = Items(**item)
