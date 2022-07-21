@@ -32,7 +32,7 @@ DATABASE = {
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'medprices (+http://www.yourdomain.com)'
+USER_AGENT = 'medprices (http://www.example.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
