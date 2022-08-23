@@ -4,9 +4,9 @@ import scrapy
 from ..items import MedpricesItem
 
 
-class DrogaRaiaSpider(scrapy.Spider):
-    name = 'drogaraiaspider'
-    store = 'droga_raia'
+class farmaciaASpider(scrapy.Spider):
+    name = 'farmaciaaspider'
+    store = 'farmaciaa'
 
     custom_settings = {
         'AUTOTHROTTLE_ENABLED': True,
@@ -15,7 +15,7 @@ class DrogaRaiaSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.drogaraia.com.br/medicamentos.html?p=1',
+            '',
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -44,9 +44,9 @@ class DrogaRaiaSpider(scrapy.Spider):
             next_page = response.urljoin(next_page)
             yield scrapy.Request(url=next_page, callback=self.parse)
 
-class DrogasilSpider(scrapy.Spider):
-    name = 'drogasilspider'
-    store = 'drogasil'
+class farmaciaBSpider(scrapy.Spider):
+    name = 'farmaciabspider'
+    store = 'farmaciab'
 
     custom_settings = {
         'AUTOTHROTTLE_ENABLED': True,
@@ -55,7 +55,7 @@ class DrogasilSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.drogasil.com.br/medicamentos.html?p=1',
+            '',
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -77,15 +77,15 @@ class DrogasilSpider(scrapy.Spider):
             next_page = response.urljoin(next_page)
             yield scrapy.Request(url=next_page, callback=self.parse)
 
-class DrogariaSaoPauloSpider(scrapy.Spider):
-    name = 'saopaulospider'
-    store = 'drogariasaopaulo'
+class farmaciacSpider(scrapy.Spider):
+    name = 'farmaciacspider'
+    store = 'farmaciac'
     page = 1
     custom_settings = {
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
-    url = "https://www.drogariasaopaulo.com.br/buscapagina?PS=48&sl=727d3c85-e93a-42fd-bd7e-42dfd3978c22&cc=48&sm=0&fq=C%3a%2f800%2f&PageNumber={}".format(page)
+    url = "".format(page)
     def start_requests(self):
         yield scrapy.Request(url=self.url, callback=self.parse)
 
@@ -101,20 +101,20 @@ class DrogariaSaoPauloSpider(scrapy.Spider):
                 item['price'] = i.css("p.price a.valor-por span::text").get()
                 yield item
             self.page += 1
-            next_url = "https://www.drogariasaopaulo.com.br/buscapagina?PS=48&sl=727d3c85-e93a-42fd-bd7e-42dfd3978c22&cc=48&sm=0&fq=C%3a%2f800%2f&PageNumber={}".format(
+            next_url = "".format(
                 self.page)
             yield scrapy.Request(url=next_url, callback=self.parse)
 
-class PagueMenosSpider(scrapy.Spider):
-    name = 'paguemenosspider'
-    store = 'paguemenos'
+class farmaciaDSpider(scrapy.Spider):
+    name = 'farmaciadspider'
+    store = 'farmaciad'
     custom_settings = {
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
-    url = "https://www.paguemenos.com.br/_v/segment/graphql/v1?workspace=master&maxAge=short&appsEtag=remove&domain=store&locale=pt-BR&__bindingId=23424e23-86bb-4397-98b0-238d88d7f528&operationName=productSearchV3&variables=%7B%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%2267d0a6ef4d455f259737e4edb1ed58f6db9ff823570356ebc88ae7c5532c0866%22%2C%22sender%22%3A%22vtex.store-resources%400.x%22%2C%22provider%22%3A%22vtex.search-graphql%400.x%22%7D%2C%22variables%22%3A%22eyJoaWRlVW5hdmFpbGFibGVJdGVtcyI6ZmFsc2UsInNrdXNGaWx0ZXIiOiJBTExfQVZBSUxBQkxFIiwic2ltdWxhdGlvbkJlaGF2aW9yIjoiZGVmYXVsdCIsImluc3RhbGxtZW50Q3JpdGVyaWEiOiJNQVhfV0lUSE9VVF9JTlRFUkVTVCIsInByb2R1Y3RPcmlnaW5WdGV4IjpmYWxzZSwibWFwIjoiYyIsInF1ZXJ5IjoibWVkaWNhbWVudG9zLWUtc2F1ZGUiLCJvcmRlckJ5IjoiT3JkZXJCeVNjb3JlREVTQyIsImZyb20iOjQ4LCJ0byI6OTUsInNlbGVjdGVkRmFjZXRzIjpbeyJrZXkiOiJjIiwidmFsdWUiOiJtZWRpY2FtZW50b3MtZS1zYXVkZSJ9XSwib3BlcmF0b3IiOiJhbmQiLCJmdXp6eSI6IjAiLCJzZWFyY2hTdGF0ZSI6bnVsbCwiZmFjZXRzQmVoYXZpb3IiOiJTdGF0aWMiLCJjYXRlZ29yeVRyZWVCZWhhdmlvciI6ImRlZmF1bHQiLCJ3aXRoRmFjZXRzIjpmYWxzZX0%3D%22%7D"
+    url = ""
     headers = {
-        'Referer': 'https://www.paguemenos.com.br/medicamentos-e-saude'
+        'Referer': ''
     }
     def start_requests(self):
         yield scrapy.Request(url=self.url, headers=self.headers, callback=self.parse)
@@ -127,19 +127,19 @@ class PagueMenosSpider(scrapy.Spider):
             item = MedpricesItem()
             item['product_name'] = i['productName']
             item['manufacturer'] = i['brand']
-            item['product_url'] = 'https://www.paguemenos.com.br' + i['link']
+            item['product_url'] = '' + i['link']
             item['price'] = i['priceRange']['sellingPrice']['lowPrice']
             yield item
 
-class PanvelSpider(scrapy.Spider):
-    name = 'panvelspider'
-    store = 'panvel'
+class farmaciaESpider(scrapy.Spider):
+    name = 'farmaciaespider'
+    store = 'farmaciae'
     custom_settings = {
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
 
-    url = 'https://www.panvel.com/api/v2/search/'
+    url = ''
 
     payload = str({
         "term":"",
@@ -157,7 +157,7 @@ class PanvelSpider(scrapy.Spider):
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3',
         'Accept-Encoding': 'gzip, deflate, br',
-        'Referer': 'https://www.panvel.com/panvel/medicamentos/c-35206',
+        'Referer': '',
         'Content-Length': '178',
         'Origin': 'https://www.panvel.com',
         'Connection': 'keep-alive',
@@ -189,7 +189,7 @@ class PanvelSpider(scrapy.Spider):
             item = MedpricesItem()
             item['product_name'] = i['name']
             item['manufacturer'] = i['brandName']
-            item['product_url'] = 'https://www.panvel.com' + i['link']
+            item['product_url'] = '' + i['link']
             item['price'] = i['discount']['dealPrice']['lowPrice']
             yield item
 
