@@ -18,13 +18,10 @@ O projeto é dividido em 3 partes:
 - React.js
 
 ## Tarefas em aberto
-- [X] Parte 1: Coleta, tratamento e registro em banco de dados
-- [X] Deploy da parte 1
+- [X] Coleta, tratamento e registro em banco de dados
 - [X] Execução programada para coleta de preços diária
-- [ ] Parte 2: API
-- [ ] Deploy da parte 2
-- [ ] Parte 3: Web App
-- [ ] Deploy da parte 2
+- [ ] Search Engine
+- [ ] Web App
 
 ## Licença
 [![License: GPL-3.0](https://img.shields.io/github/license/yurivalladares/medspricetracker)](https://opensource.org/licenses/GPL-3.0)
